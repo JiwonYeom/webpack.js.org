@@ -1,5 +1,5 @@
 ---
-title: Configuration
+title: 설정
 sort: 1
 contributors:
   - sokra
@@ -13,15 +13,21 @@ contributors:
   - sterlingvix
 ---
 
-webpack is fed via a configuration object. It is passed in one of two ways depending on how you are using webpack: through the terminal or via Node.js. All the available configuration options are specified below.
+<!--webpack is fed via a configuration object. It is passed in one of two ways depending on how you are using webpack: through the terminal or via Node.js. All the available configuration options are specified below.-->
+웹팩은 설정 객체를 기반으로 실행됩니다. 설정 객체는 어떤 식으로 웹팩을 사용하느냐에 따라 두가지 방법: 터미널 혹은 Node.js 중 하나를 택하여 넘길 수 있습니다. 설정 가능한 옵션들은 아래와 같습니다.
 
-T> New to webpack? Check out our guide to some of webpack's [core concepts](/concepts) to get started!
+<!--New to webpack? Check out our guide to some of webpack's [core concepts](/concepts) to get started!-->
+T> 웹팩은 처음이신가요? 웹팩의 [코어 개념](/concepts)에 대한 가이드로 먼저 시작해 보세요!
 
-T> Notice that throughout the configuration we use Node's built-in [path module](https://nodejs.org/api/path.html) and prefix it with the [__dirname](https://nodejs.org/docs/latest/api/globals.html#globals_dirname) global. This prevents file path issues between operating systems and allows relative paths to work as expected. See [this section](https://nodejs.org/api/path.html#path_windows_vs_posix) for more info on POSIX vs. Windows paths.
 
-## Options
+<!--Notice that throughout the configuration we use Node's built-in [path module](https://nodejs.org/api/path.html) and prefix it with the [__dirname](https://nodejs.org/docs/latest/api/globals.html#globals_dirname) global. This prevents file path issues between operating systems and allows relative paths to work as expected. See [this section](https://nodejs.org/api/path.html#path_windows_vs_posix) for more info on POSIX vs. Windows paths.-->
+T> 설정 전반에 Node의 내장 [path 모듈](https://nodejs.org/api/path.html)에 글로벌 prefix [__dirname](https://nodejs.org/docs/latest/api/globals.html#globals_dirname) 을 붙여서 사용하고 있음을 아실 수 있습니다. 이렇게 하여 OS 간에 있을 수 있는 파일 경로 이슈를 방지하고, 상대 경로들이 제대로 작동하도록 하고 있습니다. POSIX와 윈도우즈의 차이에 대해서는 [여기](https://nodejs.org/api/path.html#path_windows_vs_posix)를 참조하세요.
 
-Click on the name of each option in the configuration code below to jump to the detailed documentation. Also note that the items with arrows can be expanded to show more examples and, in some cases, more advanced configuration.
+
+## 옵션
+
+<!--Click on the name of each option in the configuration code below to jump to the detailed documentation. Also note that the items with arrows can be expanded to show more examples and, in some cases, more advanced configuration.-->
+각 옵션에 대한 더 자세항 문서를 읽고 싶으시다면 다음 코드에서 각 옵션명을 클릭하세요. 화살표가 있는 항목들은 더 많은 예제를 펼쳐 볼 수 있으며, 몇몇 항목은 더 자세한 설정 항목을 보실 수 있습니다.
 
 ``` js-with-links-with-details
 const path = require('path');
@@ -34,30 +40,30 @@ module.exports = {
     b: ["./app/entry-b1", "./app/entry-b2"]
   },
   </details>
-  // Here the application starts executing
-  // and webpack starts bundling
+  // 여기서 애플리케이션이 실행되고
+  // 웹팩이 번들링을 시작
 
   [output](/configuration/output): {
-    // options related to how webpack emits results
+    // 웹팩이 어떻게 결과를 만들어낼 것인지에 대한 옵션들
 
     [path](/configuration/output#output-path): path.resolve(__dirname, "dist"), // string
-    // the target directory for all output files
-    // must be an absolute path (use the Node.js path module)
+    // 모든 아웃풋 파일에 대한 타겟 경로는
+    // 절대 경로로 (Node.js의 path 모듈 사용)
 
     <details><summary>[filename](/configuration/output#output-filename): "bundle.js", // string</summary>
-    [filename](/configuration/output#output-filename): "[name].js", // for multiple entry points
-    [filename](/configuration/output#output-filename): "[chunkhash].js", // for [long term caching](/guides/caching)
+    [filename](/configuration/output#output-filename): "[name].js", // 엔트리 포인트가 여러개인 경우
+    [filename](/configuration/output#output-filename): "[chunkhash].js", // [long term caching](/guides/caching) 용
     </details>
-    // the filename template for entry chunks
+    // 초기 청크들의 파일명 형식
 
     <details><summary>[publicPath](/configuration/output#output-publicpath): "/assets/", // string</summary>
     [publicPath](/configuration/output#output-publicpath): "",
     [publicPath](/configuration/output#output-publicpath): "https://cdn.example.com/",
     </details>
-    // the url to the output directory resolved relative to the HTML page
+    // HTML페이지를 기준으로 한 아웃풋 디렉토리의 상대 경로
 
     [library](/configuration/output#output-library): "MyLibrary", // string,
-    // the name of the exported library
+    // export된 라이브러리명
 
     <details><summary>[libraryTarget](/configuration/output#output-librarytarget): "umd", // universal module definition</summary>
         [libraryTarget](/configuration/output#output-librarytarget): "umd2", // universal module definition
@@ -71,62 +77,62 @@ module.exports = {
         [libraryTarget](/configuration/output#output-librarytarget): "global", // property set to global object
         [libraryTarget](/configuration/output#output-librarytarget): "jsonp", // jsonp wrapper
     </details>
-    // the type of the exported library
+    // export된 라이브러리들의 종류
 
-    <details><summary>/* Advanced output configuration (click to show) */</summary>
+    <details><summary>/* 아웃풋 추가 설정 (클릭해서 보기) */</summary>
 
     [pathinfo](/configuration/output#output-pathinfo): true, // boolean
-    // include useful path info about modules, exports, requests, etc. into the generated code
+    // 생성될 코드에 모듈, export, request 등에 관련된 path 정보 포함 여부
 
     [chunkFilename](/configuration/output#output-chunkfilename): "[id].js",
     [chunkFilename](/configuration/output#output-chunkfilename): "[chunkhash].js", // for [long term caching](/guides/caching)
-    // the filename template for additional chunks
+    // 추가 청크(chunk)들을 위한 파일명 형식
 
     [jsonpFunction](/configuration/output#output-jsonpfunction): "myWebpackJsonp", // string
-    // name of the JSONP function used to load chunks
+    // 청크들을 불러올 때 사용할 JSONP 함수명
 
     [sourceMapFilename](/configuration/output#output-sourcemapfilename): "[file].map", // string
     [sourceMapFilename](/configuration/output#output-sourcemapfilename): "sourcemaps/[file].map", // string
-    // the filename template of the source map location
+    // 소스 맵 위치에 대한 파일명 형식
 
     [devtoolModuleFilenameTemplate](/configuration/output#output-devtoolmodulefilenametemplate): "webpack:///[resource-path]", // string
-    // the name template for modules in a devtool
+    // 개발툴 모듈들에 대한 형식
 
     [devtoolFallbackModuleFilenameTemplate](/configuration/output#output-devtoolfallbackmodulefilenametemplate): "webpack:///[resource-path]?[hash]", // string
-    // the name template for modules in a devtool (used for conflicts)
+    // 개발툴 모듈들에 대한 형식l (충돌시 사용)
 
     [umdNamedDefine](/configuration/output#output-umdnameddefine): true, // boolean
-    // use a named AMD module in UMD library
+    // 지정된 AMD 모듈을 UMD 라이브러리 내에서 사용
 
     [crossOriginLoading](/configuration/output#output-crossoriginloading): "use-credentials", // enum
     [crossOriginLoading](/configuration/output#output-crossoriginloading): "anonymous",
     [crossOriginLoading](/configuration/output#output-crossoriginloading): false,
-    // specifies how cross origin request are issued by the runtime
+    // 런타임중 cross origin 요청을 어떻게 할 것인가를 지정
 
-    <details><summary>/* Expert output configuration (on own risk) */</summary>
+    <details><summary>/* 전문가용 아웃풋 설정 (위험 본인 부담) */</summary>
 
     [devtoolLineToLine](/configuration/output#output-devtoollinetoline): {
       test: /\.jsx$/
     },
-    // use a simple 1:1 mapped SourceMaps for these modules (faster)
+    // 이 모듈들에 대해서는 간단한 1:1 맵핑의 소스맵을 이용 (더 빠름)
 
     [hotUpdateMainFilename](/configuration/output#output-hotupdatemainfilename): "[hash].hot-update.json", // string
-    // filename template for HMR manifest
+    // HMR manifest 의 파일명 형식
 
     [hotUpdateChunkFilename](/configuration/output#output-hotupdatechunkfilename): "[id].[hash].hot-update.js", // string
-    // filename template for HMR chunks
+    // HMR 청크들의 파일명 형식
 
     [sourcePrefix](/configuration/output#output-sourceprefix): "\t", // string
-    // prefix module sources in bundle for better readablitity
+    // 더 나은 가독성을 위해 번들 내 모듈 소스에 추가하는 prefix
     </details>
     </details>
   },
 
   [module](/configuration/module): {
-    // configuration regarding modules
+    // 모듈 관련 설정
 
     [rules](/configuration/module#module-rules): [
-      // rules for modules (configure loaders, parser options, etc.)
+      // 모듈들에 대한 규칙 (로더 설정, 파저 옵션, 등등.)
 
       {
         [test](/configuration/module#rule-test): /\.jsx?$/,
@@ -136,37 +142,37 @@ module.exports = {
         [exclude](/configuration/module#rule-exclude): [
           path.resolve(__dirname, "app/demo-files")
         ],
-        // these are matching conditions, each accepting a regular expression or string
-        // test and include have the same behavior, both must be matched
-        // exclude must not be matched (takes preferrence over test and include)
-        // Best practices:
-        // - Use RegExp only in test and for filename matching
-        // - Use arrays of absolute paths in include and exclude
-        // - Try to avoid exclude and prefer include
+        // matching condition - 정규표현식 혹은 string test로 설정 가능
+        // include: 위와 같으나, 두 인자가 모두 만족될 떄 포함
+        // exclude: test와 include 보다 더 우선순위로, 제외할 항목
+        // 베스트 프랙티스:
+        // - test와 filename에 대해서는 정규표현식만 사용
+        // - include와 exclude에 대해서는 절대경로의 배열들만 사용
+        // - exclude 보다는 include를 사용하도록 함
 
         [issuer](/configuration/module#rule-issuer): { test, include, exclude },
-        // conditions for the issuer (the origin of the import)
+        // issuer에 대한 조건 (import의 원 소스)
 
         [enforce](/configuration/module#rule-enforce): "pre",
         [enforce](/configuration/module#rule-enforce): "post",
-        // flags to apply these rules, even if they are overridden (advanced option)
+        // 오버라이딩 됬다 하더라도 위의 규칙들을 적요할지 여부 (고급 옵션)
 
         [loader](/configuration/module#rule-loader): "babel-loader",
-        // the loader which should be applied, it'll be resolved relative to the context
-        // -loader suffix is no longer optional in webpack2 for clarity reasons
-        // see [webpack 1 upgrade guide](/guides/migrating)
+        // 어느 로더를 사용할지 지정. context에 따라 경로 선언.
+        // -loader suffix는 웹팩2에서는 명확성을 위해 필수 조건임.
+        // [웹팩 1 업그레이드 가이드](/guides/migrating) 참조
 
         [options](/configuration/module#rule-options-rule-query): {
           presets: ["es2015"]
         },
-        // options for the loader
+        // 로더의 옵션들
       },
 
       {
         [test](/configuration/module#rule-test): /\.html$/,
 
         [use](/configuration/module#rule-use): [
-          // apply multiple loaders and options
+          // 다수 로더 및 옵션 적용
           "htmllint-loader",
           {
             loader: "html-loader",
@@ -178,28 +184,28 @@ module.exports = {
       },
 
       { [oneOf](/configuration/module#rule-oneof): [ /* rules */ ] },
-      // only use one of these nested rules
+      // 다중 규칙중 하나만 이용하도록 설정
 
       { [rules](/configuration/module#rule-rules): [ /* rules */ ] },
-      // use all of these nested rules (combine with conditions to be useful)
+      // 다중 규칙 모두 이용 (조건들과 조합하여 사용하면 유용)
 
       { [resource](/configuration/module#rule-resource): { [and](/configuration/module#condition): [ /* conditions */ ] } },
-      // matches only if all conditions are matched
+      // 모든 조건이 만족될 때에 한해 매치됨
 
       { [resource](/configuration/module#rule-resource): { [or](/configuration/module#condition): [ /* conditions */ ] } },
       { [resource](/configuration/module#rule-resource): [ /* conditions */ ] },
-      // matches if any condition is matched (default for arrays)
+      // 조건 중 하나만 만족해도 매치됨 (배열에 대해서 기본 설정)
 
       { [resource](/configuration/module#rule-resource): { [not](/configuration/module#condition): /* condition */ } }
-      // matches if the condition is not matched
+      // 조건이 만족되지 않았을 떄 매치됨
     ],
 
-    <details><summary>/* Advanced module configuration (click to show) */</summary>
+    <details><summary>/* 고급 모듈 설정 (클릭해서 보기) */</summary>
 
     [noParse](/configuration/module#module-noparse): [
       /special-library\.js$/
     ],
-    // do not parse this module
+    // 이 모듈은 파싱 금지
 
     unknownContextRequest: ".",
     unknownContextRecursive: true,
@@ -212,89 +218,88 @@ module.exports = {
     wrappedContextRegExp: /.*/,
     wrappedContextRecursive: true,
     wrappedContextCritical: false,
-    // specifies default behavior for dynamic requests
+    // 동적 요청(request)에 대한 기본 행동 설정
     </details>
   },
 
   [resolve](/configuration/resolve): {
-    // options for resolving module requests
-    // (does not apply to resolving to loaders)
+    // 모듈 요청의 resolve(경로 처리)에 대한 옵션
+    // (로더 resolve에 대해서는 적용되지 않음)
 
     [modules](/configuration/resolve#resolve-modules): [
       "node_modules",
       path.resolve(__dirname, "app")
     ],
-    // directories where to look for modules
+    // 모듈을 검색할 디렉토리들
 
     [extensions](/configuration/resolve#resolve-extensions): [".js", ".json", ".jsx", ".css"],
-    // extensions that are used
+    // 사용될 extention
 
     [alias](/configuration/resolve#resolve-alias): {
-      // a list of module name aliases
+      // 모듈명 별명(aliases)들에 대한 설정
 
       "module": "new-module",
-      // alias "module" -> "new-module" and "module/path/file" -> "new-module/path/file"
+      // "module" -> "new-module" 그리고 "module/path/file" -> "new-module/path/file"로 alias 설정
 
       "only-module$": "new-module",
-      // alias "only-module" -> "new-module", but not "module/path/file" -> "new-module/path/file"
+      // "only-module" -> "new-module"로 alias 설정. 하지만 "module/path/file" -> "new-module/path/file"으로는 적용되지 않음
 
       "module": path.resolve(__dirname, "app/third/module.js"),
-      // alias "module" -> "./app/third/module.js" and "module/file" results in error
-      // modules aliases are imported relative to the current context
+      // "module" -> "./app/third/module.js" 와 "module/file" 의 alias 설정시 에러 발생
+      // 현재 위치에 따라 모듈 alias가 import 됨
     },
-    <details><summary>/* alternative alias syntax (click to show) */</summary>
+    <details><summary>/* 대체 alias 문법 (클릭해서 보기) */</summary>
     [alias](/configuration/resolve#resolve-alias): [
       {
         name: "module",
-        // the old request
+        // 예전 요청
 
         alias: "new-module",
-        // the new request
+        // 새로운 요청
 
         onlyModule: true
-        // if true only "module" is aliased
-        // if false "module/inner/path" is also aliased
+        // true일 경우 "module" 만 alias화 됨
+        // false일 경우 "module/inner/path" 도 alias화 됨
       }
     ],
     </details>
 
-    <details><summary>/* Advanced resolve configuration (click to show) */</summary>
+    <details><summary>/* 고급 resolve 설정 (클릭해서 보기) */</summary>
 
     [symlinks](/configuration/resolve#resolve-symlinks): true,
-    // follow symlinks to new location
+    // symlinks를 새로운 경로로 따라가기
 
     [descriptionFiles](/configuration/resolve#resolve-descriptionfiles): ["package.json"],
-    // files that are read for package description
+    // 패키지 설명이 기록되는 파일
 
     [mainFields](/configuration/resolve#resolve-mainfields): ["main"],
-    // properties that are read from description file
-    // when a folder is requested
+    // 폴더가 요청되었을 때 설명 파일을 통해 인식된 속성들
 
     [aliasFields](/configuration/resolve#resolve-aliasfields): ["browser"],
-    // properites that are read from description file
-    // to alias requests in this package
+    // 패키지에 대한 
+    // alias 요청으로 description 파일에서 인식된 속성들
 
     [enforceExtension](/configuration/resolve#resolve-enforceextension): false,
-    // if true request must not include an extensions
-    // if false request may already include an extension
+    // true일 경우 요청이 extentions를 포함하지 않아야함
+    // false일 경우 요청이 이미 extension을 포함하고 있음
 
     [moduleExtensions](/configuration/resolve#resolveloader-moduleextensions): ["-module"],
     [enforceModuleExtension](/configuration/resolve#resolve-enforcemoduleextension): false,
-    // like extensions/enforceExtension but for module names instead of files
+    // extensions/enforceExtension과 흡사하나 파일명이 아닌 모듈명에 대한 항목
 
     [unsafeCache](/configuration/resolve#resolve-unsafecache): true,
     [unsafeCache](/configuration/resolve#resolve-unsafecache): {},
-    // enables caching for resolved requests
-    // this is unsafe as folder structure may change
-    // but performance improvement is really big
+    // resolved 요청에 대해 캐싱 사용
+    // 폴더 형태를 바꿀 수 있으므로 안전하지 않음
+    // 대신, 퍼포먼스를 크게 높힐 수 있음
 
     [cachePredicate](/configuration/resolve#resolve-cachepredicate): (path, request) => true,
-    // predicate function which selects requests for caching
+    // 캐싱 요청을 선택할 근거 함수
 
     [plugins](/configuration/resolve#resolve-plugins): [
       // ...
     ]
-    // additional plugins applied to the resolver
+    // resolver에 대해 적용된 추가 플러그인들
     </details>
   },
 
@@ -306,26 +311,26 @@ module.exports = {
     [maxAssetSize](/configuration/performance#performance-maxassetsize): 200000, // int (in bytes),
     [maxEntrypointSize](/configuration/performance#performance-maxentrypointsize): 400000, // int (in bytes)
     [assetFilter](/configuration/performance#performance-assetfilter): function(assetFilename) {
-      // Function predicate that provides asset filenames
+      // 파일명들을 제공하는 함수 predicate
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
     }
   },
 
   <details><summary>[devtool](/configuration/devtool): "source-map", // enum </summary>
-  [devtool](/configuration/devtool): "inline-source-map", // inlines SourceMap into original file
-  [devtool](/configuration/devtool): "eval-source-map", // inlines SourceMap per module
-  [devtool](/configuration/devtool): "hidden-source-map", // SourceMap without reference in original file
-  [devtool](/configuration/devtool): "cheap-source-map", // cheap-variant of SourceMap without module mappings
-  [devtool](/configuration/devtool): "cheap-module-source-map", // cheap-variant of SourceMap with module mappings
-  [devtool](/configuration/devtool): "eval", // no SourceMap, but named modules. Fastest at the expense of detail.
+  [devtool](/configuration/devtool): "inline-source-map", // 원본 파일에 SourceMap을 inline함
+  [devtool](/configuration/devtool): "eval-source-map", // 각 모듈에 SourceMap을 inline함
+  [devtool](/configuration/devtool): "hidden-source-map", // 원본 파일에 대한 리퍼런스 없이 SourceMap
+  [devtool](/configuration/devtool): "cheap-source-map", // 모듈 맵핑이 없는 SourceMap의 저비용 버전
+  [devtool](/configuration/devtool): "cheap-module-source-map", // 모듈 맵핑이 있는 SourceMap의 저비용 버전
+  [devtool](/configuration/devtool): "eval", // SourceMap 대신 이름을 붙인 모듈 사용. 디테일을 생략한 대신 속도가 빠름.
   </details>
-  // enhance debugging by adding meta info for the browser devtools
-  // source-map most detailed at the expense of build speed.
+  // 브라우저 개발자도구를 위해 메타 정보를 추가하여 더 강력한 디버깅 기능 추가
+  // 빌드 스피드를 낮추는 대신 가장 디테일한 source-map 설정
 
   [context](/configuration/entry-context#context): __dirname, // string (absolute path!)
-  // the home directory for webpack
-  // the [entry](/configuration/entry-context) and [module.rules.loader](/configuration/module#rule-loader) option
-  //   is resolved relative to this directory
+  // 웹팩의 홈 디렉토리
+  // [entry](/configuration/entry-context) and [module.rules.loader](/configuration/module#rule-loader) 옵션은
+  // 이 경로를 기준으로 결정(reolved)됨
 
   <details><summary>[target](/configuration/target): "web", // enum</summary>
   [target](/configuration/target): "webworker", // WebWorker
@@ -336,8 +341,8 @@ module.exports = {
   [target](/configuration/target): "electron-renderer", // electron, renderer process
   [target](/configuration/target): (compiler) => { /* ... */ }, // custom
   </details>
-  // the environment in which the bundle should run
-  // changes chunk loading behavior and available modules
+  // 번들이 실행될 환경
+  // 청크 로딩 방법(behavior)와 가능한 모듈들을 변경함
 
   <details><summary>[externals](/configuration/externals): ["react", /^@angular\//],</summary>
   [externals](/configuration/externals): "react", // string (exact match)
@@ -353,7 +358,7 @@ module.exports = {
   },
   [externals](/configuration/externals): (request) => { /* ... */ return "commonjs " + request }
   </details>
-  // Don't follow/bundle these modules, but request them at runtime from the environment
+  // 이 모듈들을 follow하거나 묶지(bundle) 말고, 런타임 도중에 호출
 
   <details><summary>[stats](/configuration/stats): "errors-only",</summary>
   [stats](/configuration/stats): { //object
@@ -365,7 +370,7 @@ module.exports = {
     // ...
   },
   </details>
-  // lets you precisely control what bundle information gets displayed
+  // 보여주는 번들 정보를 제어 가능
 
   [devServer](/configuration/dev-server): {
     proxy: { // proxy URLs to backend development server
@@ -373,53 +378,53 @@ module.exports = {
     },
     contentBase: path.join(__dirname, 'public'), // boolean | string | array, static file location
     compress: true, // enable gzip compression
-    historyApiFallback: true, // true for index.html upon 404, object for multiple paths
-    hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
-    https: false, // true for self-signed, object for cert authority
-    noInfo: true, // only errors & warns on hot reload
+    historyApiFallback: true, // 404시에 index.html에 대해 실행, 다수 경로에 대한 오브젝트
+    hot: true, // hot 모듈 교체. HotModuleReplacementPlugin에 따라 결정
+    https: false, // self-signed 와 cert authority 객체 생성을 위해서는 true로 설정
+    noInfo: true, // hot reload의 경우 에러와 경고만 표시
     // ...
   },
 
   [plugins](plugins): [
     // ...
   ],
-  // list of additional plugins
+  // 추가 플러그인 리스트
 
 
-  <details><summary>/* Advanced configuration (click to show) */</summary>
+  <details><summary>/* 고급 설정 (클릭해서 보기) */</summary>
 
   [resolveLoader](/configuration/resolve#resolveloader): { /* same as resolve */ }
-  // separate resolve options for loaders
+  // 로더에 대한 resolve 옵션 분리
   
   [parallelism](other-options#parallelism): 1, // number
-  // limit the number of parallel processed modules
+  // 병렬 프로세스 모듈의 숫자 제한
 
   [profile](other-options#profile): true, // boolean
-  // capture timing information
+  // 시간 정보 수집
 
   [bail](other-options#bail): true, //boolean
-  // fail out on the first error instead of tolerating it.
+  // 첫번째 에러에서 용인 없이 fail 하도록 유도
 
   [cache](other-options#cache): false, // boolean
-  // disable/enable caching
+  // 캐싱 사용/비사용
 
   [watch](watch#watch): true, // boolean
-  // enables watching
+  // watching 사용
 
   [watchOptions](watch#watchoptions): {
     [aggregateTimeout](watch#watchoptions-aggregatetimeout): 1000, // in ms
-    // aggregates multiple changes to a single rebuild
+    // 한번 재빌드 할 떄마다 다중 변경 사항을 aggregate
 
     [poll](watch#watchoptions-poll): true,
     [poll](watch#watchoptions-poll): 500, // intervall in ms
-    // enables polling mode for watching
-    // must be used on filesystems that doesn't notify on change
-    // i. e. nfs shares
+    // watch에 대해 polling 모드 자용
+    // 변경이 일어나도 알림이 없는 파일 시스템에 사용할것
+    // 예) nfs shares
   },
 
   [node](node): {
-    // Polyfills and mocks to run Node.js-
-    // environment code in non-Node environments.
+    // Node.js 실행을 위한 임시 설정 /폴리필
+    // 비Node 환경에 대한 환경 코드.
     
     [console](node#node-console): false, // boolean | "mock"
     [global](node#node-global): true, // boolean | "mock"
